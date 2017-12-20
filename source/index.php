@@ -14,21 +14,21 @@ $counter = 0;
         <script src="scripts/scroll.js"></script>
     </head>
     <body>
-    <div class="m1 menu">
-        <div id="menu-center">
-            <ul>
-                <li><a class="active" href="#wiezijnwij">Wie Zijn Wij</a></li>
-                <li><a href="#doelstelling">Doelstelling</a></li>
-                <li><a href="#fotos">Foto's</a></li>
-                <li><a href="#nieuws">Nieuws</a></li>
-                <li><a href="#links">Links</a></li>
-                <li><a href="#boeken">Boeken</a></li>
-                <li><a href="login.php">Login</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="index">
-        <div id="wiezijnwij">
+    <nav id="menu">
+        <ul>
+            <li><a href="#wiezijnwij">Wie Zijn Wij</a></li>
+            <li><a href="#doelstelling">Doelstelling</a></li>
+            <li><a href="#fotos">Foto's</a></li>
+            <li><a href="#nieuws">Nieuws</a></li>
+            <li><a href="#links">Links</a></li>
+            <li><a href="#boeken">Boeken</a></li>
+            <li id="login"><a href="login.php">Login</a></li>
+        </ul>
+    </nav>
+    <div class="sections">
+        <section id="wiezijnwij">
+            <h1>wiezijnwij</h1>
+            <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
             Quia nec honesto quic quam honestius nec turpi turpius. <br>
             Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
@@ -49,8 +49,11 @@ $counter = 0;
             Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
             ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
             Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-        </div>
-        <div id="doelstelling">
+            </p>
+        </section>
+        <section id="doelstelling">
+            <h1>doel</h1>
+            <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
             Quia nec honesto quic quam honestius nec turpi turpius. <br>
             Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
@@ -71,8 +74,10 @@ $counter = 0;
             Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
             ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
             Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-        </div>
-        <div id="fotos">
+            </p>
+        </section>
+        <section id="fotos">
+            <h1>foto</h1>
             <?php
 
             $handle = opendir(dirname(realpath(__FILE__)).'/images/');
@@ -100,10 +105,10 @@ $counter = 0;
             <?php
             foreach ($picktures as $image)
                 echo '
-    <script>
+        <script>
         // Get the modal
         var modal = document.getElementById("myModal");
-
+        
         // Get the image and insert it inside the modal - use its "alt" text as a caption
         var img = document.getElementById("' . $image . '");
         var modalImg = document.getElementById("img01");
@@ -117,19 +122,21 @@ $counter = 0;
         modalImg.onclick = function () {
             modal.style.display = "none";
         }
-
+        
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
-
+        
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
         }
-    </script>
-    '
+        </script>
+        '
             ?>
-        </div>
-        <div id="nieuws">
+        </section>
+        <section id="nieuws">
+            <h1>nieuws</h1>
+            <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
             Quia nec honesto quic quam honestius nec turpi turpius. <br>
             Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
@@ -150,8 +157,11 @@ $counter = 0;
             Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
             ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
             Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-        </div>
-        <div id="links">
+            </p>
+        </section>
+        <section id="links">
+            <h1>links</h1>
+            <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
             Quia nec honesto quic quam honestius nec turpi turpius. <br>
             Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
@@ -172,8 +182,11 @@ $counter = 0;
             Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
             ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
             Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-        </div>
-        <div id="boeken">
+            </p>
+        </section>
+        <section id="boeken">
+            <h1>boeken</h1>
+            <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
             Quia nec honesto quic quam honestius nec turpi turpius. <br>
             Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
@@ -194,7 +207,8 @@ $counter = 0;
             Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
             ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
             Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-        </div>
+            </p>
+        </section>
     </div>
     </body>
 </html>
