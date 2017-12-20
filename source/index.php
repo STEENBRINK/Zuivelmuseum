@@ -1,7 +1,16 @@
 <?php
-require_once("reference/reference.php");
 $picktures = [];
 $counter = 0;
+$login = false;
+$username = '';
+
+//connect
+require_once("reference/reference.php");
+
+if(isset($_SESSION['user_id'])){
+    $login = true;
+    $username = getUsername();
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -22,7 +31,11 @@ $counter = 0;
             <li><a href="#nieuws">Nieuws</a></li>
             <li><a href="#links">Links</a></li>
             <li><a href="#boeken">Boeken</a></li>
-            <li id="login"><a href="login.php">Login</a></li>
+            <li id="login">
+                <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>">
+                    <?php if($login){ echo $username; }else{echo "Login";} ?>
+                </a>
+            </li>
         </ul>
     </nav>
     <div class="sections">

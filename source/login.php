@@ -1,15 +1,44 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: STEENBRINK
- * Date: 23-11-2015
- * Time: 11:54
- */
+
+// define variables and set to empty values
+$nameErr = $passErr = $subErr = "";
 
 //connect
-include("reference/connect.php");
+require_once("reference/reference.php");
 
+if(isset($_SESSION['user_id'])){
+    header('Location:redirectlogout.html');
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["username"])) {
+        $nameErr = "Name is required";
+    }else if (empty($_POST["password"])) {
+        $passErr = "Password is required";
+    }else {
+        $subErr = checkUserPass();
+    }
+}
+function checkUserPass(){
+    $username = str_replace("'","''",$_POST["username"]);
+    $password = md5($_POST["password"]);
+
+// Verify that user is in database
+    $q = "SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '$password'";
+    $result = mysqli_query(getConnection(), $q);
+    $rowcount = mysqli_num_rows($result);
+    if($rowcount > 0){
+        $resultrow = mysqli_fetch_row($result);
+        var_dump($resultrow);
+        $_SESSION['user_id'] = $resultrow[0];
+        header("location: index.php");
+    }else{
+        $subErr = "One of the fields is not filled in correctly";
+        return $subErr;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,9 +60,9 @@ include("reference/connect.php");
 </nav>
 <div class="sections">
     <h1>Log In</h1>
-    <form name="login" method="post" action="login.php">
-        <input class="index" id="search" value="Username" onfocus="if (this.value === 'Username') {this.value = '';}" data-rel="active" size="8" name="username"><br />
-        <input type="password" class="index" id="search" value="Password" onfocus="if (this.value === 'Password') this.value = '';" data-rel="active" size="8" name="password"><br />
+    <form name="login" method="post" action="">
+        <input id="search" value="Username" onfocus="if (this.value === 'Username') {this.value = '';}" onblur="if (this.value === '') {this.value = 'Username';}" data-rel="active" size=8 name="username"><br />
+        <input type="password" class="index" id="search" value="Password" onfocus="if (this.value === 'Password') this.value = '';" onblur="if (this.value === '') {this.value = 'Password';}" data-rel="active" size="8" name="password"><br />
         <input type="submit" class="index" id="search" size="8" value="submit"><br />
         <a href="accountcreation.php"><input type="button" class="boo" id="search" value="Create new account!" size="16"></a>
     </form>
