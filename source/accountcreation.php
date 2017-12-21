@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
-    <title>Chantdante Log In</title>
+    <title>Create account</title>
 </head>
 
 <?php
@@ -19,14 +19,14 @@ $canPass = $booleanName = $booleanPass1 = $booleanPass2 = $booleanEmail = $match
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
-        $nameErr = "Name is required";
+        $nameErr = "<br>Name is required<br>";
     } else {
         $name = test_input($_POST["name"]);
         // check if name only contains letters and whitespace and numbers
         if (!preg_match("/^[a-zA-Z0-9 ]*$/",$name)) {
-            $nameErr = "Only letters, numbers and white space allowed";
-        } if(database()){
-            $nameErr = "Username allready in use";
+            $nameErr = "<br>Only letters, numbers and white space allowed<br>";
+        } if(usernameinuse()){
+            $nameErr = "<br>Username allready in use<br>";
         } else {
             //name correcly entered
             $booleanName = true;
@@ -35,14 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["pass1"])) {
-            $pass1Err = "Password is required";
+            $pass1Err = "<br>Password is required<br>";
         } else {
             $pass1 = test_input($_POST["pass1"]);
             // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z0-9]*$/", $pass1)) {
-                $pass1Err = "Only letters and numbers allowed";
+                $pass1Err = "<br>Only letters and numbers allowed<br>";
             } if($pass1 == "password"){
-                $pass1Err = "Password can't be password";
+                $pass1Err = "<br>Password can't be password<br>";
             }else {
                 //pass1 correcly entered
                 $booleanPass1 = true;
@@ -51,12 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["pass2"])) {
-                $pass2Err = "Password validation is required";
+                $pass2Err = "<br>Password validation is required<br>";
             } else {
                 $pass2 = test_input($_POST["pass2"]);
                 // check if name only contains letters and whitespace
                 if (!preg_match("/^[a-zA-Z0-9]*$/", $pass2)) {
-                    $pass2Err = "Only letters and numbers allowed";
+                    $pass2Err = "<br>Only letters and numbers allowed<br>";
                 } else {
                     //pass2 correcly entered
                     $booleanPass2 = true;
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if ($pass1 != $pass2){
-            $errorendpage = "<span class='error'>Your passwords do not match!</span>";
+            $errorendpage = "<span class='error'><br>Your passwords do not match!<br></span>";
         }else {
             $match = true;
         }
@@ -78,8 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = test_input($_POST["email"]);
         // check if e-mail address is well-formed
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailErr = "Invalid email format";
-        } else {
+            $emailErr = "<br>Invalid e-mail format<br>";
+        } if(emailinuse()) {
+            $emailErr = "<br>E-mail allready in use<br>";
+        }else {
             //email correcly entered
             $booleanEmail = true;
         }
@@ -100,6 +102,7 @@ function test_input($data)
 
 function addNewUser()
 {
+    global $errorendpage;
     $username = $_POST['name'];
     $password = md5($_POST['pass1']);
     $e_mail = $_POST['email'];
@@ -109,29 +112,37 @@ function addNewUser()
     VALUES(null,'$username','$password','$e_mail')";
     $result = mysqli_query(getConnection(), $sql);
     if($result) {
-        if (addBuildings(mysqli_insert_id(getConnection()))) {
-            //go back to the main page if the user is added correctly
-            ?>
-            <p class ="index">
-                User added! You will be redirected to the main page...
-            </p>
-            <script type="text/javascript">
-                <!--
-                setTimeout(function () {
-                    window.location = "index.php"
-                }, 5000);
-                //-->
-            </script>
-            <?php
-        }
+        //go back to the main page if the user is added correctly
+        $errorendpage = '
+        <span><br>Account creation succesfull! You will be redirected to the main page.<br></span>
+        <script type="text/javascript">
+            <!--
+            setTimeout(function () {
+                window.location = "index.php"
+            }, 5000);
+            //-->
+        </script>
+        ';
     }
 }
 
-function database(){
+function usernameinuse(){
     global $connection;
     $username = $_POST["name"];
     //if username exists in database return true
     $query = "SELECT * FROM `users` WHERE `username` = '$username'";
+    $result = mysqli_query($connection, $query);
+    $rowcount = mysqli_num_rows($result);
+    if($rowcount > 0){
+        return true;
+    }
+}
+
+function emailinuse(){
+    global $connection;
+    $email = $_POST["email"];
+    //if username exists in database return true
+    $query = "SELECT * FROM `users` WHERE `email` = '$email'";
     $result = mysqli_query($connection, $query);
     $rowcount = mysqli_num_rows($result);
     if($rowcount > 0){
@@ -168,12 +179,11 @@ $disconnect = mysqli_close($connection);
         <span class="error"> <?php echo $emailErr;?></span>
         <input type="submit" name="submit" value="Submit">
         <p class="small">* Is required</p>
+        <?php
+        echo $errorendpage;
+        ?>
     </form>
 
 </div>
-<?php
-echo $errorendpage;
-?>
-
 </body>
 </html>

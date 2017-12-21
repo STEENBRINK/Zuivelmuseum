@@ -63,7 +63,7 @@ function checkUserPass(){
     <form name="login" method="post" action="">
         <input id="search" value="Username" onfocus="if (this.value === 'Username') {this.value = '';}" onblur="if (this.value === '') {this.value = 'Username';}" data-rel="active" size=8 name="username"><br />
         <input type="password" class="index" id="search" value="Password" onfocus="if (this.value === 'Password') this.value = '';" onblur="if (this.value === '') {this.value = 'Password';}" data-rel="active" size="8" name="password"><br />
-        <input type="submit" class="index" id="search" size="8" value="submit"><br />
+        <input type="submit" id="search" size="8" value="submit"><br />
         <a href="accountcreation.php"><input type="button" class="boo" id="search" value="Create new account!" size="16"></a>
     </form>
 </div>

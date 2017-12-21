@@ -30,4 +30,15 @@ function getUsername(){
     return $resultrow[1];
 }
 
+function isAdmin(){
+    $q = "SELECT * FROM `users` WHERE `ID` = '$_SESSION[user_id]'";
+    $result = mysqli_query(getConnection(), $q);
+    $resultrow = mysqli_fetch_row($result);
+    if($resultrow[4] == 1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 $user = checkLoggedIn();
