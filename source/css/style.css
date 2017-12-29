@@ -133,7 +133,7 @@ span.error
 }
 
 img{
-    border: solid 2px #402E77;
+    border: solid 2px #537F7F;
 }
 
 p.home
@@ -155,7 +155,7 @@ img.mini:hover {opacity: 0.7;}
 
 /* The Modal (background) */
 .modal {
-    border: solid 2px #402E77;
+    border: solid 2px #537F7F;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -174,6 +174,7 @@ img.mini:hover {opacity: 0.7;}
     margin: auto;
     display: block;
     max-width: 80%;
+    max-height: 90%;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -206,7 +207,7 @@ img.mini:hover {opacity: 0.7;}
 }
 
 /* The Close Button */
-.close {
+span.close {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -216,7 +217,31 @@ img.mini:hover {opacity: 0.7;}
     transition: 0.3s;
 }
 
+span.pref {
+    position: absolute;
+    top: 50%;
+    left: 45px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+span.next {
+    position: absolute;
+    top: 45%;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
 .close:hover,
+.pref:hover,
+.pref:focus,
+.next:hover,
+.next:focus,
 .close:focus {
     color: #bbb;
     text-decoration: none;
@@ -234,13 +259,13 @@ table {
     display: block;
     margin: auto;
     width: 470px;
-    border: solid 2px #402E77;
+    border: solid 2px #537F7F;
     text-align: left;
 }
 
 tr.title th{
     padding: auto;
-    border-bottom: solid 2px #402E77;
+    border-bottom: solid 2px #537F7F;
 }
 
 form.table{

@@ -182,6 +182,9 @@ $disconnect = mysqli_close($connection);
                 <input type="hidden" name="ID" value="<?php echo $editID; ?>">
                 <input type="submit" class="delete" id="search" value="Delete account" size="16">
             </form>
+            <form action="account.php">
+                <input type="submit" value="Cancel" size="16">
+            </form>
         </div>
     </body>
 </html>
