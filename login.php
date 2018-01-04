@@ -51,10 +51,10 @@ function checkUserPass(){
     <ul>
         <li><a href="index.php#wiezijnwij">Wie Zijn Wij</a></li>
         <li><a href="index.php#doelstelling">Doelstelling</a></li>
-        <li><a href="index.php#fotos">Foto's</a></li>
         <li><a href="index.php#nieuws">Nieuws</a></li>
         <li><a href="index.php#links">Links</a></li>
         <li><a href="index.php#boeken">Boeken</a></li>
+        <li><a href="photos.php">Foto's</a></li>
         <li id="login"><a href="login.php" class="active">Login</a></li>
     </ul>
 </nav>

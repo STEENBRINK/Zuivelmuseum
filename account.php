@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="index.php#links">Links</a></li>
                 <li><a href="index.php#boeken">Boeken</a></li>
                 <li id="login">
-                    <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>">
+                    <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>" class="active">
                         <?php if($login){ echo $username; }else{echo "Login";} ?>
                     </a>
                 </li>

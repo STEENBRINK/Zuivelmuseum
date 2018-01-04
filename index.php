@@ -27,10 +27,10 @@ if(isset($_SESSION['user_id'])){
         <ul>
             <li><a href="#wiezijnwij">Wie Zijn Wij</a></li>
             <li><a href="#doelstelling">Doelstelling</a></li>
-            <li><a href="#fotos">Foto's</a></li>
             <li><a href="#nieuws">Nieuws</a></li>
             <li><a href="#links">Links</a></li>
             <li><a href="#boeken">Boeken</a></li>
+            <li><a href="photos.php">Foto's</a></li>
             <li id="login">
                 <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>">
                     <?php if($login){ echo $username; }else{echo "Login";} ?>
@@ -39,7 +39,7 @@ if(isset($_SESSION['user_id'])){
         </ul>
     </nav>
     <div class="sections">
-        <section id="wiezijnwij">
+        <section id="wiezijnwij" class="filled">
             <br><br>
             <h1>Wie zijn wij?</h1>
             <p>
@@ -100,72 +100,7 @@ if(isset($_SESSION['user_id'])){
                 De oud-melkboeren worden meestal benaderd vanuit oude ledenlijsten van bijvoorbeeld saneringsbureaus, verenigingen of organisaties.<br>
             </p>
         </section>
-        <section id="fotos">
-            <h1>foto</h1>
-            <?php
-
-            $handle = opendir(dirname(realpath(__FILE__)).'/images/');
-            while($file = readdir($handle)) {
-                if ($file !== '.' && $file !== '..') {
-                    echo '<img id="'. $file .'" src="images/' . $file . '" alt="' . substr($file, 0, -4) .'" class = "mini"/>';
-                    $picktures[$counter] = $file;
-                    $counter++;
-                }
-            }
-            ?>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-
-                <!-- The Close Button -->
-                <span class="close">&times;</span>
-
-                <!-- The Pref Button -->
-                <span class="pref">&larr;</span>
-
-
-                <!-- The Next Button -->
-                <span class="next">&rarr;</span>
-
-                <!-- Modal Content (The Image) -->
-                <img class="modal-content" id="img01">
-
-                <!-- Modal Caption (Image Text) -->
-                <div id="caption"></div>
-            </div>
-            <?php
-            foreach ($picktures as $image)
-                echo '
-        <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-        
-        // Get the image and insert it inside the modal - use its "alt" text as a caption
-        var img = document.getElementById("' . $image . '");
-        var modalImg = document.getElementById("img01");
-        var captionText = document.getElementById("caption");
-        img.onclick = function () {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
-        
-        modalImg.onclick = function () {
-            modal.style.display = "none";
-        }
-        
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        </script>
-        '
-            ?>
-        </section>
-        <section id="nieuws">
+        <section id="nieuws" class="filled">
             <h1>nieuws</h1>
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
@@ -215,7 +150,7 @@ if(isset($_SESSION['user_id'])){
             Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
             </p>
         </section>
-        <section id="boeken">
+        <section id="boeken" class="filled">
             <h1>boeken</h1>
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
