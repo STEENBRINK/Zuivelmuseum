@@ -34,13 +34,23 @@ if(isset($_POST["submit"]) && $uploadOk == 1) {
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "<br>Sorry, your file was not uploaded.";
+    echo '<br>Sorry, your file was not uploaded.<br>
+    <a href="account.php"><input type="button" class ="account" value="Go Back" size="16"></a>';
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        header('location:account.php');
+        echo '<br>The file '. basename( $_FILES["fileToUpload"]["name"]). ' has been uploaded.
+        <span><br>Photo uploaded! You will be redirected to the account page.<br></span>
+        <script type="text/javascript">
+            <!--
+        setTimeout(function () {
+            window.location = "account.php"
+            }, 5000);
+            //-->
+        </script>';
     } else {
-        echo "<br>Sorry, there was an error uploading your file.";
+        echo '<br>Sorry, there was an error uploading your file.
+            
+            ';
     }
 }

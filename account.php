@@ -2,14 +2,9 @@
 
 //connect
 require_once("reference/reference.php");
-$admin = false;
-$login = false;
-$username = '';
+$admin = $login = $canPass = false;
+$username = $photoErr = '';
 
-$target_dir = "images/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 if(!isset($_SESSION['user_id'])){
     header('Location:redirectlogin.html');
@@ -18,6 +13,18 @@ if(!isset($_SESSION['user_id'])){
     $username = getUsername();
     if(isAdmin()){
         $admin = true;
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    var_dump($_POST);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["fileToUpload"])) {
+        $photoErr = "You did not upload a photo";
+    }else{
+        $canPass = true;
     }
 }
 ?>
@@ -51,16 +58,16 @@ if(!isset($_SESSION['user_id'])){
 
         if ($admin){
             userTable();
-            uploadButton();
-        }
-
-        function uploadButton(){?>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            ?>
+                <form  method="post" action="<?php if($canPass){header('location:upload.php');} ?>">
                 <h1>Foto Upload</h1>
                 <p>Select image to upload:</p>
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                <input type="submit" value="Upload Image" name="submit">
-            </form><?php
+                <span class="error"> <?php echo $photoErr ?> </span>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload Image" name="submit">
+                </form>
+
+            <?php
         }
 
         function userTable(){?>
@@ -89,23 +96,31 @@ if(!isset($_SESSION['user_id'])){
                         }
                         ;?>
                     </td>
-                    <td>
-                        <form class="table" method="post" action="edit.php">
-                            <input type="hidden" name="check" value="0">
-                            <input type="hidden" name="ID" value=<?php echo "$row[0]" ?>>
-                            <input type="submit" name="submit" value="Edit">
-                        </form>
-                    </td>
+                    <?php
+                    if (!($_SESSION['user_id'] == $row[0])) {
+                        ?>
+                        <td>
+                            <form class="table" method="post" action="edit.php">
+                                <input type="hidden" name="check" value="0">
+                                <input type="hidden" name="ID" value=<?php echo "$row[0]" ?>>
+                                <input type="submit" name="submit" value="Edit">
+                            </form>
+                        </td>
+                        <?php
+                    }
+                    ?>
                 </tr>
                 <?php
             }?>
             </table>
-            <a href="accountcreation.php"><input type="button" class ="account" value="Create new account" size="16"></a><br>
-            <a href="logout.php"><input type="button" class ="account" value="Log Out" size="16"></a><br>
-            <a href="info.php"><input type="button" class ="account" value="Info" size="16"></a><br>
+            <a href="accountcreationadmin.php"><input type="button" class ="account" value="Create new account" size="16"></a><br>
+            <h1>Info</h1>
+            <a href="info.php"><input type="button" class ="account" value="Info" size="16"></a><br><br>
             <?php
         }
         ?>
+            <h1>Log Out</h1>
+            <a href="logout.php"><input type="button" class ="account" value="Log Out" size="16"></a>
         </div>
     </body>
 </html>
