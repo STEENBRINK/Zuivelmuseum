@@ -40,7 +40,7 @@ if(isset($_SESSION['user_id'])){
     </ul>
 </nav>
 <div class="sections">
-        <section id="fotos">
+        <section id="fotos" class="notfilled">
             <h1>Foto's</h1>
             <?php
 

@@ -16,17 +16,6 @@ if(!isset($_SESSION['user_id'])){
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    var_dump($_POST);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["fileToUpload"])) {
-        $photoErr = "You did not upload a photo";
-    }else{
-        $canPass = true;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <ul>
                 <li><a href="index.php#wiezijnwij">Wie Zijn Wij</a></li>
                 <li><a href="index.php#doelstelling">Doelstelling</a></li>
-                <li><a href="index.php#fotos">Foto's</a></li>
                 <li><a href="index.php#nieuws">Nieuws</a></li>
                 <li><a href="index.php#links">Links</a></li>
                 <li><a href="index.php#boeken">Boeken</a></li>
+                <li><a href="photos.php">Foto's</a></li>
                 <li id="login">
                     <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>" class="active">
                         <?php if($login){ echo $username; }else{echo "Login";} ?>
@@ -52,14 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
             </ul>
         </nav>
-        <div id="sections">
+        <div id="account">
 
         <?php
 
         if ($admin){
             userTable();
             ?>
-                <form  method="post" action="<?php if($canPass){header('location:upload.php');} ?>">
+                <form  method="post" action="upload.php" enctype="multipart/form-data">
                 <h1>Foto Upload</h1>
                 <p>Select image to upload:</p>
                 <span class="error"> <?php echo $photoErr ?> </span>

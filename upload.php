@@ -1,4 +1,7 @@
 <?php
+
+var_dump($_FILES);
+
 $target_dir = "images/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -10,7 +13,7 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 5000000) {
     echo "<br>Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -21,7 +24,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 }
 
 // Check if image file is a actual image or fake image
-if(isset($_POST["submit"]) && $uploadOk == 1) {
+if(isset($_POST["fileToUpload"]) && $uploadOk == 1) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
         echo "<br>File is an image - " . $check["mime"] . ".";
@@ -39,7 +42,7 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo '<br>The file '. basename( $_FILES["fileToUpload"]["name"]). ' has been uploaded.
+        echo '<br>The file '. basename( $_FILES["fileToUpload"]["name"]). ' has been uploaded!
         <span><br>Photo uploaded! You will be redirected to the account page.<br></span>
         <script type="text/javascript">
             <!--
@@ -49,7 +52,8 @@ if ($uploadOk == 0) {
             //-->
         </script>';
     } else {
-        echo '<br>Sorry, there was an error uploading your file.
+        echo '<br>Sorry, there was an error uploading your file.<br>
+               <a href="account.php"><input type="button" class ="account" value="Go Back" size="16"></a>
             
             ';
     }

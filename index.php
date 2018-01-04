@@ -22,7 +22,7 @@ if(isset($_SESSION['user_id'])){
         <script type="text/javascript" src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="scripts/scroll.js"></script>
     </head>
-    <body>
+    <body id="photo">
     <nav id="menu">
         <ul>
             <li><a href="#wiezijnwij">Wie Zijn Wij</a></li>
@@ -39,6 +39,35 @@ if(isset($_SESSION['user_id'])){
         </ul>
     </nav>
     <div class="sections">
+        <section class="titlepage">
+            <img src="images/Logo.jpg" class="logo">
+            <table class="openingstijden">
+                <tr>
+                    <td>Maandag</td>
+                    <td>09:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td>Dinsdag</td>
+                    <td>09:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td>Woensdag</td>
+                    <td>09:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td>Donderdag</td>
+                    <td>09:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td>Vrijdag</td>
+                    <td>09:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td>Zaterdag</td>
+                    <td>09:00 - 17:00</td>
+                </tr>
+            </table>
+        </section>
         <section id="wiezijnwij" class="filled">
             <br><br>
             <h1>Wie zijn wij?</h1>
@@ -73,7 +102,7 @@ if(isset($_SESSION['user_id'])){
                 en van allerlei melkventerskarren zoals die vele jaren het straatbeeld van ons land hebben bepaald.
             </p>
         </section>
-        <section id="doelstelling">
+        <section id="doelstelling" class="notfilled">
             <h1>Wat is onze doelstelling?</h1>
             <p>
                 <i>"Het in stand houden van de rijke Nederlandse zuivelhistorie, met daaraan gekoppeld een royale aandacht voor de ouderwetse melkboer en melkhandel."</i><br>
@@ -125,7 +154,7 @@ if(isset($_SESSION['user_id'])){
             Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
             </p>
         </section>
-        <section id="links">
+        <section id="links" class="notfilled">
             <h1>links</h1>
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
@@ -176,5 +205,8 @@ if(isset($_SESSION['user_id'])){
             </p>
         </section>
     </div>
+    <footer>
+        STEENBRINK&copy;
+    </footer>
     </body>
 </html>
