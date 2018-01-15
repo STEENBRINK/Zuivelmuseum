@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 function checkUserPass(){
-    $username = str_replace("'","''",$_POST["username"]);
+    $username = str_replace("'","''", mysqli_real_escape_string(getConnection(), $_POST["username"]));
     $password = md5($_POST["password"]);
 
 // Verify that user is in database

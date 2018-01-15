@@ -64,7 +64,6 @@ section
 .notfilled {
     background-color: rgba(255, 255, 238, 0.7);
     color: #000;
-
 }
 
 nav
@@ -290,6 +289,12 @@ form.table{
     margin:0;
     padding:0;
 }
+
+.edit{
+    min-width: 30px;
+    margin: 0;
+}
+
 form.table input{
     min-width: 40px;
 }

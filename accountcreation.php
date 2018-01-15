@@ -103,13 +103,13 @@ function test_input($data)
 function addNewUser()
 {
     global $errorendpage;
-    $username = $_POST['name'];
+    $username = mysqli_real_escape_string(getConnection(), $_POST['name']);
     $password = md5($_POST['pass1']);
-    $e_mail = $_POST['email'];
+    $e_mail = mysqli_real_escape_string(getConnection(), $_POST['email']);
 
     $sql = "INSERT INTO
     users(ID, username, password, email)
-    VALUES(null,'$username','$password','$e_mail')";
+    VALUES(null,' $username','$password','$e_mail')";
     $result = mysqli_query(getConnection(), $sql);
     if($result) {
         //go back to the main page if the user is added correctly
@@ -128,7 +128,7 @@ function addNewUser()
 
 function usernameinuse(){
     global $connection;
-    $username = $_POST["name"];
+    $username = mysqli_real_escape_string(getConnection(), $_POST["name"]);
     //if username exists in database return true
     $query = "SELECT * FROM `users` WHERE `username` = '$username'";
     $result = mysqli_query($connection, $query);
@@ -140,7 +140,7 @@ function usernameinuse(){
 
 function emailinuse(){
     global $connection;
-    $email = $_POST["email"];
+    $email = mysqli_real_escape_string(getConnection(), $_POST["email"]);
     //if username exists in database return true
     $query = "SELECT * FROM `users` WHERE `email` = '$email'";
     $result = mysqli_query($connection, $query);

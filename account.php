@@ -1,4 +1,6 @@
 <?php
+$picktures = [];
+$counter = 0;
 
 //connect
 require_once("reference/reference.php");
@@ -57,6 +59,7 @@ if(!isset($_SESSION['user_id'])){
                 </form>
 
             <?php
+            getPhotos();
         }
 
         function userTable(){?>
@@ -103,8 +106,32 @@ if(!isset($_SESSION['user_id'])){
             }?>
             </table>
             <a href="accountcreationadmin.php"><input type="button" class ="account" value="Create new account" size="16"></a><br>
-            <h1>Info</h1>
-            <a href="info.php"><input type="button" class ="account" value="Info" size="16"></a><br><br>
+            <?php
+        }
+
+        function getPhotos() { ?>
+            <h1>Photos</h1>
+            <table>
+                <tr class="title">
+                    <th width="150px">Beschrijving</th>
+                    <th width="100%">Grootte</th>
+                    <th width="50px">Edit</th>
+                </tr><?php
+
+            $handle = opendir(dirname(realpath(__FILE__)) . '/images/');
+            while ($file = readdir($handle)) {
+                if ($file !== '.' && $file !== '..') {?>
+                    <tr class="row">
+                    <td><?php echo substr($file, 0 , -4);?></td>
+                    <td><?php echo filesize('images/'. $file)/1000;?>kb</td>
+                    <td>
+                        <form class="edit" method="post" action="<?php unlink('images/' . $file)?>">
+                            <input type="submit" class="delete" name="submit" value="  Delete  ">
+                        </form>
+                    </td> <?php } ?>
+                </tr> <?php } ?>
+            </table>
+            <a href="accountcreationadmin.php"><input type="button" class ="account" value="Create new account" size="16"></a><br>
             <?php
         }
         ?>
