@@ -332,3 +332,7 @@ h2 {
     top: 19%;
     border: 0;
 }
+
+.ui-datepicker {
+    background-color: rgba(255, 255, 238, 1);
+}
