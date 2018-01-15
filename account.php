@@ -18,6 +18,10 @@ if(!isset($_SESSION['user_id'])){
     }
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    unlink('images/' . $_POST("file"));
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +129,8 @@ if(!isset($_SESSION['user_id'])){
                     <td><?php echo substr($file, 0 , -4);?></td>
                     <td><?php echo filesize('images/'. $file)/1000;?>kb</td>
                     <td>
-                        <form class="edit" method="post" action="<?php unlink('images/' . $file)?>">
+                        <form class="edit" method="post" action="">
+                            <input type="hidden" name="file" value=<?php echo "$file" ?>>
                             <input type="submit" class="delete" name="submit" value="  Delete  ">
                         </form>
                     </td> <?php } ?>
