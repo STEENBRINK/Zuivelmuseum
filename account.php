@@ -19,7 +19,8 @@ if(!isset($_SESSION['user_id'])){
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    unlink('images/' . $_POST("file"));
+    unlink('images/' . $_POST["file"]);
+    $_POST = array();
 }
 
 ?>
@@ -30,6 +31,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <meta charset="UTF-8">
         <title>Account</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+        <script>
+            $( function() {
+                $( "#datepicker" ).datepicker();
+                $('.timepicker').timepicker({
+                    timeFormat: 'HH:mm',
+                    interval: 30,
+                    minTime: '10',
+                    maxTime: '5:00pm',
+                    defaultTime: 'now',
+                    startTime: '9:00am',
+                    dynamic: false,
+                    dropdown: true,
+                    scrollbar: true
+                });
+            } );
+        </script>
     </head>
     <body>
         <nav id="menu">
@@ -64,7 +84,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <?php
             getPhotos();
-        }
+        }?>
+            <h1>Make a reservation!</h1>
+            <form>
+                <input name="date" id="datepicker">
+                <input name="time" id="timepicker">
+                <input type="submit" name="submit" value="Make Reservation">
+            </form>
+        <?php
 
         function userTable(){?>
             <h1>Registered Accounts</h1>
@@ -141,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
             <h1>Log Out</h1>
-            <a href="logout.php"><input type="button" class ="account" value="Log Out" size="16"></a>
+            <a href="logout.php"><input type="button" class ="account" value="Log Out" size="16"></a><br><br>
         </div>
     </body>
 </html>
