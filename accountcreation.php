@@ -22,6 +22,7 @@ $nameErr = $emailErr = $pass1Err = $pass2Err = "";
 $name = $email = $pass1 = $pass2 = $errorendpage = "";
 $canPass = $booleanName = $booleanPass1 = $booleanPass2 = $booleanEmail = $match = false;
 
+//checks if username is up to standards
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $nameErr = "<br>Name is required<br>";
@@ -37,66 +38,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $booleanName = true;
         }
     }
+}
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["pass1"])) {
-            $pass1Err = "<br>Password is required<br>";
-        } else {
-            $pass1 = test_input($_POST["pass1"]);
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z0-9]*$/", $pass1)) {
-                $pass1Err = "<br>Only letters and numbers allowed<br>";
-            } if($pass1 == "password"){
-                $pass1Err = "<br>Password can't be password<br>";
-            }else {
-                //pass1 correcly entered
-                $booleanPass1 = true;
-            }
-        }
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["pass2"])) {
-                $pass2Err = "<br>Password validation is required<br>";
-            } else {
-                $pass2 = test_input($_POST["pass2"]);
-                // check if name only contains letters and whitespace
-                if (!preg_match("/^[a-zA-Z0-9]*$/", $pass2)) {
-                    $pass2Err = "<br>Only letters and numbers allowed<br>";
-                } else {
-                    //pass2 correcly entered
-                    $booleanPass2 = true;
-                }
-            }
-        }
-
-        if ($pass1 != $pass2){
-            $errorendpage = "<span class='error'><br>Your passwords do not match!<br></span>";
-        }else {
-            $match = true;
-        }
-
-    }
-
-    if (empty($_POST["email"])) {
-        $emailErr = "Email is required";
+//checks if pass is up to standards
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["pass1"])) {
+        $pass1Err = "<br>Password is required<br>";
     } else {
-        $email = test_input($_POST["email"]);
-        // check if e-mail address is well-formed
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailErr = "<br>Invalid e-mail format<br>";
-        } if(emailinuse()) {
-            $emailErr = "<br>E-mail allready in use<br>";
+        $pass1 = test_input($_POST["pass1"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $pass1)) {
+            $pass1Err = "<br>Only letters and numbers allowed<br>";
+        } if($pass1 == "password"){
+            $pass1Err = "<br>Password can't be password<br>";
         }else {
-            //email correcly entered
-            $booleanEmail = true;
+            //pass1 correcly entered
+            $booleanPass1 = true;
         }
-    }
-    //check if data in form is correctly entered
-    if ($booleanName && $booleanPass1 && $booleanPass2 && $booleanEmail && $match) {
-        addNewUser();
     }
 }
 
+//checks if pass2 is up to standards
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["pass2"])) {
+        $pass2Err = "<br>Password validation is required<br>";
+    } else {
+        $pass2 = test_input($_POST["pass2"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $pass2)) {
+            $pass2Err = "<br>Only letters and numbers allowed<br>";
+        } else {
+            //pass2 correcly entered
+            $booleanPass2 = true;
+        }
+    }
+}
+
+//checks if pw match
+if ($pass1 != $pass2){
+    $errorendpage = "<span class='error'><br>Your passwords do not match!<br></span>";
+}else {
+    $match = true;
+}
+
+//checks if email is up to standards
+if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+} else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailErr = "<br>Invalid e-mail format<br>";
+    } if(emailinuse()) {
+        $emailErr = "<br>E-mail allready in use<br>";
+    }else {
+        //email correcly entered
+        $booleanEmail = true;
+    }
+}
+//check if data in form is correctly entered
+if ($booleanName && $booleanPass1 && $booleanPass2 && $booleanEmail && $match) {
+    addNewUser();
+}
+
+//tests input data
 function test_input($data)
 {
     $data = trim($data);
@@ -105,6 +110,7 @@ function test_input($data)
     return $data;
 }
 
+//add new user to db
 function addNewUser()
 {
     global $errorendpage;
@@ -131,6 +137,7 @@ function addNewUser()
     }
 }
 
+//checks if username in use
 function usernameinuse(){
     global $connection;
     $username = mysqli_real_escape_string(getConnection(), $_POST["name"]);
@@ -143,6 +150,7 @@ function usernameinuse(){
     }
 }
 
+//checks is email in use
 function emailinuse(){
     global $connection;
     $email = mysqli_real_escape_string(getConnection(), $_POST["email"]);
@@ -155,6 +163,7 @@ function emailinuse(){
     }
 }
 
+//dc
 $disconnect = mysqli_close($connection);
 
 ?>

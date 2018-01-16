@@ -1,4 +1,6 @@
 <?php
+
+//set vars
 $picktures = [];
 $counter = 0;
 $login = false;
@@ -7,6 +9,7 @@ $username = '';
 //connect
 require_once("reference/reference.php");
 
+//if a user is detected get username
 if(isset($_SESSION['user_id'])){
     $login = true;
     $username = getUsername();
@@ -132,7 +135,7 @@ if(isset($_SESSION['user_id'])){
                 De oud-melkboeren worden meestal benaderd vanuit oude ledenlijsten van bijvoorbeeld saneringsbureaus, verenigingen of organisaties.<br>
             </p>
         </section>
-        <section id="contact" class="notfilled" style="height: 120px;">
+        <section id="contact" class="filled" style="height: 120px;">
             <div class="footer" style="text-align: left">
                 Stichting Melkboeren- en Zuivelmuseum<br>
                 'DE MELKMATEN'<br>

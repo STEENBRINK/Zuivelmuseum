@@ -1,12 +1,15 @@
 <?php
-$picktures = [];
-$counter = 0;
 
 //connect
 require_once("reference/reference.php");
+
+//set vars
 $admin = $login = $canPass = $dateCheck = $timeCheck = false;
 $username = $photoErr = $resErr = $succes = '';
+$picktures = [];
+$counter = 0;
 
+//if not logged in redirect
 if(!isset($_SESSION['user_id'])){
     header('Location:redirectlogin.html');
 }else{
@@ -17,6 +20,7 @@ if(!isset($_SESSION['user_id'])){
     }
 }
 
+//checks the different post options if submitted and handles them accordingly
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!empty($_POST["reservation"]) && $_POST["reservation"] == 1) {
         if(empty($_POST["date"])){
@@ -50,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+//if the post contains a reservation, insert into db
 function makeReservation() {
         global $succes;
         $date = mysqli_real_escape_string(getConnection(), $_POST['date']);
@@ -121,33 +126,41 @@ function userTable(){?>
     <?php
 }
 
+//Gets all the picktures out of the image map and lists them in a table.
 function getPhotos() { ?>
     <h1>Photos</h1>
-    <table>
-        <tr class="title">
-            <th width="150px">Beschrijving</th>
-            <th width="100%">Grootte</th>
-            <th width="50px">Edit</th>
-        </tr><?php
+        <table id="photocollapse">
+            <tr class="title">
+                <th width="150px">Beschrijving</th>
+                <th width="100%">Grootte</th>
+                <th width="50px">Edit</th>
+            </tr><?php
 
-        $handle = opendir(dirname(realpath(__FILE__)) . '/images/');
-        while ($file = readdir($handle)) {
-            if ($file !== '.' && $file !== '..') {?>
-                <tr class="row">
-                <td><?php echo substr($file, 0 , -4);?></td>
-                <td><?php echo filesize('images/'. $file)/1000;?>kb</td>
-                <td>
-                    <form class="edit" method="post" action="">
-                        <input type="hidden" name="file" value= <?php echo '"' . $file . '"' ?>>
-                        <input type="submit" class="delete" name="submit" value="  Delete  ">
-                    </form>
-                </td> <?php } ?>
-            </tr> <?php } ?>
-    </table>
-    <a href="accountcreationadmin.php"><input type="button" class ="account" value="Create new account" size="16"></a><br>
+            $handle = opendir(dirname(realpath(__FILE__)) . '/images/');
+            while ($file = readdir($handle)) {
+                if ($file !== '.' && $file !== '..') {?>
+                    <tr class="row">
+                    <td><?php echo substr($file, 0 , -4);?></td>
+                    <td><?php echo filesize('images/'. $file)/1000;?>kb</td>
+                    <td>
+                        <form class="edit" method="post" action="">
+                            <input type="hidden" name="file" value= <?php echo '"' . $file . '"' ?>>
+                            <input type="submit" class="delete" name="submit" value="  Delete  ">
+                        </form>
+                    </td> <?php } ?>
+                </tr> <?php } ?>
+        </table>
+        <a href="accountcreationadmin.php"><input type="button" class ="account" value="Create new account" size="16"></a><br>
     <?php
 }
 
+//gets all the reservations and lists them in a table
+//Ask for a bool variable
+//
+//if admin is logged in:
+//  show all the reservations forward from today
+//if a regular user is loggged in:
+//  show all the reservations ever made by this user
 function reservationTable($check){
     if($check) {
         ?>

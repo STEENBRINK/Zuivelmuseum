@@ -6,10 +6,12 @@ $nameErr = $passErr = $subErr = "";
 //connect
 require_once("reference/reference.php");
 
+//if logged in redirect
 if(isset($_SESSION['user_id'])){
     header('Location:redirectlogout.html');
 }
 
+//checks if data is filled in
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["username"])) {
         $nameErr = "Name is required";
@@ -18,7 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }else {
         $subErr = checkUserPass();
     }
+    $disconnect = mysqli_close(getConnection());
 }
+
+//checks if user exists in db
 function checkUserPass(){
     $username = str_replace("'","''", mysqli_real_escape_string(getConnection(), $_POST["username"]));
     $password = md5($_POST["password"]);

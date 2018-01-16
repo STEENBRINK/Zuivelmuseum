@@ -13,6 +13,8 @@ $nameErr = $emailErr = $editName = $editEmail = "";
 $name = $email = $errorendpage = "";
 $canPass = $booleanName = $booleanEmail = $giveErr = false;
 
+//if not logged in redirect
+//else get the user to be eddited from db
 if(!isset($_SESSION['user_id'])){
     header('Location:redirectlogin.html');
 }else{
@@ -30,6 +32,7 @@ if(!isset($_SESSION['user_id'])){
     }
 }
 
+//check if username is according to standards
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['check'] == '1'){
         $giveErr = true;
@@ -50,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+//check if email is according to standards
     if (empty($_POST["email"])) {
         $emailErr = "Email is required";
     } else {
@@ -80,6 +84,7 @@ function test_input($data)
     return $data;
 }
 
+//updates the user with the new data
 function updateUser()
 {
     global $errorendpage;
@@ -111,6 +116,7 @@ function updateUser()
     }
 }
 
+//check if username in use
 function usernameinuse(){
     global $connection;
     $username = $_POST["username"];
@@ -126,6 +132,7 @@ function usernameinuse(){
     }
 }
 
+//check if email in use
 function emailinuse(){
     global $connection;
     $email = $_POST["email"];

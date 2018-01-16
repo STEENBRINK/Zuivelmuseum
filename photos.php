@@ -7,6 +7,7 @@ $username = '';
 //connect
 require_once("reference/reference.php");
 
+//if logged in get username
 if(isset($_SESSION['user_id'])){
     $login = true;
     $username = getUsername();
@@ -43,6 +44,7 @@ if(isset($_SESSION['user_id'])){
             <h1>Foto's</h1>
             <?php
 
+            //get all photo's from /images/ and put list them on the page
             $handle = opendir(dirname(realpath(__FILE__)).'/images/');
             while($file = readdir($handle)) {
                 if ($file !== '.' && $file !== '..') {
