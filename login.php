@@ -28,6 +28,7 @@ function checkUserPass(){
     $result = mysqli_query(getConnection(), $q);
     $rowcount = mysqli_num_rows($result);
     if($rowcount > 0){
+        echo "booiah";
         $resultrow = mysqli_fetch_row($result);
         var_dump($resultrow);
         $_SESSION['user_id'] = $resultrow[0];
@@ -44,21 +45,20 @@ function checkUserPass(){
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
-    <title>Chantdante Log In</title>
+    <title>Zuivelmuseum Log In</title>
+    <link rel="icon" href="Icon.png">
 </head>
 <body style="overflow: hidden">
 <nav id="menu">
     <ul>
         <li><a href="index.php#wiezijnwij">Wie Zijn Wij</a></li>
         <li><a href="index.php#doelstelling">Doelstelling</a></li>
-        <li><a href="index.php#nieuws">Nieuws</a></li>
-        <li><a href="index.php#links">Links</a></li>
-        <li><a href="index.php#boeken">Boeken</a></li>
+        <li><a href="index.php#contact">Contaact</a></li>
         <li><a href="photos.php">Foto's</a></li>
         <li id="login"><a href="login.php" class="active">Login</a></li>
     </ul>
 </nav>
-<div class="sections">
+<div id="account">
     <h1>Log In</h1>
     <form name="login" method="post" action="">
         <input id="search" value="Username" onfocus="if (this.value === 'Username') {this.value = '';}" onblur="if (this.value === '') {this.value = 'Username';}" data-rel="active" size=8 name="username"><br />

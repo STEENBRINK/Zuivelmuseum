@@ -18,7 +18,7 @@ if(!isset($_SESSION['user_id'])){
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if($_POST["reservation"] == 1) {
+    if(!empty($_POST["reservation"]) && $_POST["reservation"] == 1) {
         if(empty($_POST["date"])){
             $resErr = "Please enter a date";
         }else{
@@ -41,6 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }else {
         if (!empty($_POST["file"])) {
             unlink('images/' . $_POST["file"]);
+        }
+        if(!empty($_POST["delres"])) {
+            echo 'hoi';
+            $q = 'DELETE FROM reservations WHERE ID = ' . $_POST["delres"];
+            $result = mysqli_query(getConnection(), $q);
         }
     }
 }
@@ -133,7 +138,7 @@ function getPhotos() { ?>
                 <td><?php echo filesize('images/'. $file)/1000;?>kb</td>
                 <td>
                     <form class="edit" method="post" action="">
-                        <input type="hidden" name="file" value=<?php echo "$file" ?>>
+                        <input type="hidden" name="file" value= <?php echo '"' . $file . '"' ?>>
                         <input type="submit" class="delete" name="submit" value="  Delete  ">
                     </form>
                 </td> <?php } ?>
@@ -143,19 +148,21 @@ function getPhotos() { ?>
     <?php
 }
 
-function reservationTable(){?>
-    <h1>Reservations</h1>
-    <table>
+function reservationTable($check){
+    if($check) {
+        ?>
+        <h1>Reserveringen</h1>
+        <table>
         <tr class="title">
-            <th width="50%">E-mail</th>
-            <th width="40%">Date</th>
-            <th width="100px">Time</th>
+            <th width="16%">E-mail</th>
+            <th width="16%">Date</th>
+            <th width="18%">Time</th>
         </tr>
         <?php
         $user_querry = "SELECT * FROM `users`";
         $user_result = mysqli_query(getConnection(), $user_querry);
         $usercount = 0;
-        while ($user = mysqli_fetch_array($user_result)){
+        while ($user = mysqli_fetch_array($user_result)) {
             $users[$usercount] = $user;
             $usercount++;
         }
@@ -163,19 +170,19 @@ function reservationTable(){?>
         $koppel_querry = "SELECT * FROM `koppel`";
         $koppel_result = mysqli_query(getConnection(), $koppel_querry);
         $koppelcount = 0;
-        while ($koppel = mysqli_fetch_array($koppel_result)){
+        while ($koppel = mysqli_fetch_array($koppel_result)) {
             $koppels[$koppelcount] = $koppel[0];
             $koppelcount++;
         }
 
         $res_query = "SELECT * FROM `reservations`";
         $res_result = mysqli_query(getConnection(), $res_query);
-        while ($row = mysqli_fetch_array($res_result)){
+        while ($row = mysqli_fetch_array($res_result)) {
             $year = substr($row[1], -4);
             $month = substr($row[1], 0, -8);
             ltrim($month, '0');
-            if(!(date('Y') > (int) $year))
-                if(!(date('n') > (int) $month)) {
+            if (!(date('Y') > (int)$year))
+                if (!(date('n') > (int)$month)) {
                     $email = $users[array_search($row[0], $koppels)];
                     ?>
                     <tr class="row">
@@ -185,7 +192,35 @@ function reservationTable(){?>
                     </tr>
                     <?php
                 }
-        }?>
+        }
+    }else{?>
+        <h1>Mijn Reserveringen</h1>
+        <table>
+        <tr>
+            <th width="16%">Datum</th>
+            <th width="16%">Tijd</th>
+            <th width="18%">Verwijder</th>
+        </tr><?php
+        $koppel_querry = 'SELECT * FROM `koppel` WHERE `user_id` = ' . $_SESSION["user_id"];
+        $koppel_result = mysqli_query(getConnection(), $koppel_querry);
+        while ($koppel = mysqli_fetch_array($koppel_result)) {
+            $res_querry = 'SELECT * FROM `reservations` WHERE `ID` = ' . $koppel[1];
+            $res_result = mysqli_query(getConnection(), $res_querry);
+
+            while ($row = mysqli_fetch_array($res_result)) { ?>
+                <tr class="row">
+                <td><?php echo $row[1]; ?></td>
+                <td><?php echo $row[2]; ?></td>
+                <td>
+                    <form class="edit" method="post" action="">
+                        <input type="hidden" name="delres" value= <?php echo $row[0]; ?>>
+                        <input type="submit" class="delete" name="submit" value="  Delete  ">
+                    </form>
+                </td>
+                </tr><?php
+            }
+        }
+    }?>
     </table>
     <?php
 }
@@ -198,11 +233,12 @@ function reservationTable(){?>
         <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css">
         <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">-->
         <meta charset="UTF-8">
-        <title>Account</title>
+        <title><?php getUsername() ?></title>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+        <link rel="icon" href="Icon.png">
         <script>
             $( function() {
                 $( "#datepicker" ).datepicker({
@@ -229,9 +265,7 @@ function reservationTable(){?>
             <ul>
                 <li><a href="index.php#wiezijnwij">Wie Zijn Wij</a></li>
                 <li><a href="index.php#doelstelling">Doelstelling</a></li>
-                <li><a href="index.php#nieuws">Nieuws</a></li>
-                <li><a href="index.php#links">Links</a></li>
-                <li><a href="index.php#boeken">Boeken</a></li>
+                <li><a href="index.php#contact">Contact</a></li>
                 <li><a href="photos.php">Foto's</a></li>
                 <li id="login">
                     <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>" class="active">
@@ -241,16 +275,16 @@ function reservationTable(){?>
             </ul>
         </nav>
         <div id="account">
-        <h1>Make a reservation!</h1>
+        <h1>Reserveren</h1>
                 <form method="post" action="">
                     <span class="error"> <?php echo  $resErr;?></span>
             <input name="date" id="datepicker">
             <input name="time" class="timepicker">
             <input type="hidden" name="reservation" value=1>
-            <input type="submit" name="submit" value="Make Reservation">
+            <input type="submit" name="submit" value="Reserveer!">
             </form><?php
         if ($admin){
-            reservationTable();
+            reservationTable(true);
             userTable();
             ?>
 
@@ -263,10 +297,19 @@ function reservationTable(){?>
                 </form>
             <?php
             getPhotos();
+        }else{
+            reservationTable(false);
+
         }?>
-            <h1>Log Out</h1>
-            <a href="logout.php"><input type="button" class ="account" value="Log Out" size="16"></a><br><br>
-        </div>
+            <h1>Log Uit</h1>
+            <a href="logout.php"><input type="button" class ="account" value="Log Uit" size="16"></a>
+
+            <h1>Delete Account</h1>
+            <form class="account" method="post" action="delete.php">
+                <input type="hidden" name="delacc" value="user">
+                <input type="submit" class="delete" name="submit" value="  Delete  ">
+            </form>
+        <br><br></div>
     </body>
 </html>
 

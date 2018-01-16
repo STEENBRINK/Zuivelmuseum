@@ -7,6 +7,7 @@ html {
 
 body
 {
+    display: block;
     background: fixed url(background/background.jpg) no-repeat center;
     margin: 0;
     font-size: 15px;
@@ -49,11 +50,11 @@ section
 #account {
     background-color: rgba(255, 255, 238, 0.7);
     position: absolute;
-    margin: 90px 10% 0 10%;
+    margin: 90px 10% 90px 10%;
+    min-height: 83%;
     width: 80%;
-    height: 83%;
+    min-width: 450px;
     text-align: center;
-    overflow: auto;
 }
 
 .filled {
@@ -275,12 +276,15 @@ span.next {
 table {
     display: block;
     margin: auto;
-    width: 470px;
+    width: 50%;
     border: solid 2px rgba(255, 255, 238, 1);
     text-align: left;
+    min-width: 420px;
 }
 
 tr.title th{
+    position: relative;
+    width: 3%;
     padding: auto;
     border: solid 2px rgba(255, 255, 238, 1);
 }
@@ -335,4 +339,25 @@ h2 {
 
 .ui-datepicker {
     background-color: rgba(255, 255, 238, 1);
+}
+
+#edit{
+    margin-top: 50px;
+}
+
+.footer{
+    position: relative;
+    width: 33%;
+    height: 90px;
+    float: left;
+}
+
+#logo{
+    float: right;
+    margin-right: 10px;
+    border: 0;
+    width: 32px;
+}
+#logo img{
+    border:0;
 }

@@ -150,6 +150,7 @@ $disconnect = mysqli_close($connection);
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <meta charset="UTF-8">
         <title>Edit</title>
+        <link rel="icon" href="Icon.png">
     </head>
     <body>
         <nav id="menu">
@@ -157,9 +158,7 @@ $disconnect = mysqli_close($connection);
                 <li><a href="index.php#wiezijnwij">Wie Zijn Wij</a></li>
                 <li><a href="index.php#doelstelling">Doelstelling</a></li>
                 <li><a href="index.php#fotos">Foto's</a></li>
-                <li><a href="index.php#nieuws">Nieuws</a></li>
-                <li><a href="index.php#links">Links</a></li>
-                <li><a href="index.php#boeken">Boeken</a></li>
+                <li><a href="index.php#contact">Contact</a></li>
                 <li id="login">
                     <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>">
                         <?php if($login){ echo $username; }else{echo "Login";} ?>
@@ -167,8 +166,8 @@ $disconnect = mysqli_close($connection);
                 </li>
             </ul>
         </nav>
-        <div id="sections">
-            <form name="edit" method="post" action="<?php if($canPass){header('location:account.php');} ?>">
+        <div id="account" class="notfilled">
+            <form name="edit" method="post" action="<?php if($canPass){header('location:account.php');} ?>" id="edit">
                 <input type="hidden" name="check" value="1">
                 <input type="hidden" name="ID" value="<?php echo $editID; ?>">
                 <input value= "<?php echo $editName ?>" size=8 name="username"><br>

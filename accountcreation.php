@@ -4,11 +4,16 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="UTF-8">
     <title>Create account</title>
+    <link rel="icon" href="Icon.png">
 </head>
 
 <?php
+
+$login = false;
 require_once("reference/reference.php");
 if(isset($_SESSION['user_id'])){
+    $login = true;
+    $username = getUsername();
     header('Location:redirectlogout.html');
 }
 
@@ -109,7 +114,7 @@ function addNewUser()
 
     $sql = "INSERT INTO
     users(ID, username, password, email)
-    VALUES(null,' $username','$password','$e_mail')";
+    VALUES(null,'$username','$password','$e_mail')";
     $result = mysqli_query(getConnection(), $sql);
     if($result) {
         //go back to the main page if the user is added correctly
@@ -159,9 +164,7 @@ $disconnect = mysqli_close($connection);
     <ul>
         <li><a href="index.php#wiezijnwij">Wie Zijn Wij</a></li>
         <li><a href="index.php#doelstelling">Doelstelling</a></li>
-        <li><a href="index.php#nieuws">Nieuws</a></li>
-        <li><a href="index.php#links">Links</a></li>
-        <li><a href="index.php#boeken">Boeken</a></li>
+        <li><a href="index.php#contact">Contact</a></li>
         <li><a href="photos.php">Foto's</a></li>
         <li id="login">
             <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>">
@@ -170,7 +173,7 @@ $disconnect = mysqli_close($connection);
         </li>
     </ul>
 </nav>
-<div id="sections">
+<div id="account">
     <h1>Registration</h1>
     <form id="creation" method="post" action="<?php if($canPass){header('location:index.php');} ?>">
         <p>Username*:</p><input name="name" value="<?php echo $name;?>">

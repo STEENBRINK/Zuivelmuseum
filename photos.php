@@ -22,15 +22,14 @@ if(isset($_SESSION['user_id'])){
     <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script src="scripts/scroll.js"></script>
+    <link rel="icon" href="Icon.png">
 </head>
 <body>
 <nav id="menu">
     <ul>
         <li><a href="index.php#wiezijnwij">Wie Zijn Wij</a></li>
         <li><a href="index.php#doelstelling">Doelstelling</a></li>
-        <li><a href="index.php#nieuws">Nieuws</a></li>
-        <li><a href="index.php#links">Links</a></li>
-        <li><a href="index.php#boeken">Boeken</a></li>
+        <li><a href="index.php#contact">Contact</a></li>
         <li><a href="photos.php" class="active">Foto's</a></li>
         <li id="login">
             <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>">

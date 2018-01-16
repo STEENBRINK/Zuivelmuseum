@@ -16,8 +16,9 @@ if(isset($_SESSION['user_id'])){
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Het Zuivelmuseum</title>
+        <title>Zuivelmuseum</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="icon" href="Icon.png">
         <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="scripts/scroll.js"></script>
@@ -27,9 +28,7 @@ if(isset($_SESSION['user_id'])){
         <ul>
             <li><a href="#wiezijnwij">Wie Zijn Wij</a></li>
             <li><a href="#doelstelling">Doelstelling</a></li>
-            <li><a href="#nieuws">Nieuws</a></li>
-            <li><a href="#links">Links</a></li>
-            <li><a href="#boeken">Boeken</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a href="photos.php">Foto's</a></li>
             <li id="login">
                 <a href="<?php if($login){ echo "account.php"; }else{echo "login.php";} ?>">
@@ -40,6 +39,10 @@ if(isset($_SESSION['user_id'])){
     </nav>
     <div class="sections">
         <section class="titlepage">
+            <div id="logo">
+                <a href="https://www.facebook.com/zuivelmuseum/?fref=ts"><img src="facebook%20icon.png"></a>
+                <a href="mailto:info@zuivelmuseum.nl"><img src="mail.png"></a>
+            </div>
             <img src="images/Logo.jpg" class="logo">
             <table class="openingstijden">
                 <tr>
@@ -129,84 +132,33 @@ if(isset($_SESSION['user_id'])){
                 De oud-melkboeren worden meestal benaderd vanuit oude ledenlijsten van bijvoorbeeld saneringsbureaus, verenigingen of organisaties.<br>
             </p>
         </section>
-        <section id="nieuws" class="filled">
-            <h1>nieuws</h1>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
-            Quia nec honesto quic quam honestius nec turpi turpius. <br>
-            Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
-            Beatus autem esse in maximarum rerum timore nemo potest. Immo alio genere;
-            <br><br>
-            Theophrasti igitur, inquit, tibi liber ille placet de beata vita? Qui est in parvis malis. <br>
-            Itaque quantum adiit periculum! ad honestatem enim illum omnem conatum suum referebat, non ad voluptatem. <br>
-            Haec para/doca illi, nos admirabilia dicamus. Non potes, nisi retexueris illa. Deinde disputat, <br>
-            quod cuiusque generis animantium statui deceat extremum. Ut scias me intellegere, primum idem esse dico voluptatem, <br>
-            quod ille don. Illud dico, ea, quae dicat, praeclare inter se cohaerere. <br>
-            Quid dubitas igitur mutare principia naturae? Haec igitur Epicuri non probo, inquam.
-            <br><br>
-            Nam, ut saepe iam dixi, in infirma aetate inbecillaque mente vis naturae quasi per caliginem cernitur; <br>
-            Quodcumque in mentem incideret, et quodcumque tamquam occurreret.<br>
-            Cupit enim dícere nihil posse ad beatam vitam deesse sapienti. <br>
-            Ergo, si semel tristior effectus est, hilara vita amissa est? Tum mihi Piso: Quid ergo?<br>
-            Id mihi magnum videtur. Heri, inquam, ludis commissis ex urbe profectus veni ad vesperum. <br>
-            Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
-            ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
-            Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-            </p>
-        </section>
-        <section id="links" class="notfilled">
-            <h1>links</h1>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
-            Quia nec honesto quic quam honestius nec turpi turpius. <br>
-            Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
-            Beatus autem esse in maximarum rerum timore nemo potest. Immo alio genere;
-            <br><br>
-            Theophrasti igitur, inquit, tibi liber ille placet de beata vita? Qui est in parvis malis. <br>
-            Itaque quantum adiit periculum! ad honestatem enim illum omnem conatum suum referebat, non ad voluptatem. <br>
-            Haec para/doca illi, nos admirabilia dicamus. Non potes, nisi retexueris illa. Deinde disputat, <br>
-            quod cuiusque generis animantium statui deceat extremum. Ut scias me intellegere, primum idem esse dico voluptatem, <br>
-            quod ille don. Illud dico, ea, quae dicat, praeclare inter se cohaerere. <br>
-            Quid dubitas igitur mutare principia naturae? Haec igitur Epicuri non probo, inquam.
-            <br><br>
-            Nam, ut saepe iam dixi, in infirma aetate inbecillaque mente vis naturae quasi per caliginem cernitur; <br>
-            Quodcumque in mentem incideret, et quodcumque tamquam occurreret.<br>
-            Cupit enim dícere nihil posse ad beatam vitam deesse sapienti. <br>
-            Ergo, si semel tristior effectus est, hilara vita amissa est? Tum mihi Piso: Quid ergo?<br>
-            Id mihi magnum videtur. Heri, inquam, ludis commissis ex urbe profectus veni ad vesperum. <br>
-            Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
-            ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
-            Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-            </p>
-        </section>
-        <section id="boeken" class="filled">
-            <h1>boeken</h1>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
-            Quia nec honesto quic quam honestius nec turpi turpius. <br>
-            Memini vero, inquam; Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis; <br>
-            Beatus autem esse in maximarum rerum timore nemo potest. Immo alio genere;
-            <br><br>
-            Theophrasti igitur, inquit, tibi liber ille placet de beata vita? Qui est in parvis malis. <br>
-            Itaque quantum adiit periculum! ad honestatem enim illum omnem conatum suum referebat, non ad voluptatem. <br>
-            Haec para/doca illi, nos admirabilia dicamus. Non potes, nisi retexueris illa. Deinde disputat, <br>
-            quod cuiusque generis animantium statui deceat extremum. Ut scias me intellegere, primum idem esse dico voluptatem, <br>
-            quod ille don. Illud dico, ea, quae dicat, praeclare inter se cohaerere. <br>
-            Quid dubitas igitur mutare principia naturae? Haec igitur Epicuri non probo, inquam.
-            <br><br>
-            Nam, ut saepe iam dixi, in infirma aetate inbecillaque mente vis naturae quasi per caliginem cernitur; <br>
-            Quodcumque in mentem incideret, et quodcumque tamquam occurreret.<br>
-            Cupit enim dícere nihil posse ad beatam vitam deesse sapienti. <br>
-            Ergo, si semel tristior effectus est, hilara vita amissa est? Tum mihi Piso: Quid ergo?<br>
-            Id mihi magnum videtur. Heri, inquam, ludis commissis ex urbe profectus veni ad vesperum. <br>
-            Ita ne hoc quidem modo paria peccata sunt. Praeterea sublata cognitione et scientia tollitur omnis<br>
-            ratio et vitae degendae et rerum gerendarum. Respondent extrema primis, media utrisque, omnia omnibus.<br>
-            Nunc haec primum fortasse audientis servire debemus. Cui Tubuli nomen odio non est?<br><br>
-            </p>
+        <section id="contact" class="notfilled" style="height: 120px;">
+            <div class="footer" style="text-align: left">
+                Stichting Melkboeren- en Zuivelmuseum<br>
+                'DE MELKMATEN'<br>
+
+                POSTBANK NR.          <br>
+                NL38 INGB 0006 1870 63<br>
+                K.V.K. NR. 0911.87.68
+            </div>
+            <div class="footer"style="text-align: center">
+                Voorzitter:<br>
+                Peter van Moerkerk<br>
+                Dorpsstraat 29<br>
+                6678 BE Oosterhout<br>
+                tel. 0481-482087<br>
+                peter@moerkerk.nl<br>
+            </div>
+            <div class="footer"style="text-align: right">
+                Secretaris/Penningmeester:<br>
+                Jaco Heeren<br>
+                Polweg 3a<br>
+                7875 CG Exloo<br>
+                tel. 0591-549252<br>
+                mob. 06-51 666 228<br>
+                jacoheeren@ziggo.nl<br>
+            </div>
         </section>
     </div>
-    <footer>
-        STEENBRINK&copy;
-    </footer>
     </body>
 </html>
