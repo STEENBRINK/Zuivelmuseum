@@ -150,7 +150,6 @@ function getPhotos() { ?>
                     </td> <?php } ?>
                 </tr> <?php } ?>
         </table>
-        <a href="accountcreationadmin.php"><input type="button" class ="account" value="Create new account" size="16"></a><br>
     <?php
 }
 
