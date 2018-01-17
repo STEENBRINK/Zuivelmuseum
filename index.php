@@ -108,6 +108,10 @@ if(isset($_SESSION['user_id'])){
                 en van allerlei melkventerskarren zoals die vele jaren het straatbeeld van ons land hebben bepaald.
             </p>
         </section>
+        <div id="vec">
+            <img src="images/Vecomi.jpg" id="img1">
+            <img src="images/1.jpg" id="img2">
+        </div>
         <section id="doelstelling" class="notfilled">
             <h1>Wat is onze doelstelling?</h1>
             <p>
