@@ -14,7 +14,7 @@ require_once("reference/reference.php");
 if(isset($_SESSION['user_id'])){
     $login = true;
     $username = getUsername();
-    header('Location:redirectlogout.html');
+    header('Location:redirectlogout.php');
 }
 
 // define variables and set to empty values

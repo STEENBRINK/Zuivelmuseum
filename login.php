@@ -8,7 +8,7 @@ require_once("reference/reference.php");
 
 //if logged in redirect
 if(isset($_SESSION['user_id'])){
-    header('Location:redirectlogout.html');
+    header('Location:redirectlogout.php');
 }
 
 //checks if data is filled in

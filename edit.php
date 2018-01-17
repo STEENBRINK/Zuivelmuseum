@@ -16,7 +16,7 @@ $canPass = $booleanName = $booleanEmail = $giveErr = false;
 //if not logged in redirect
 //else get the user to be eddited from db
 if(!isset($_SESSION['user_id'])){
-    header('Location:redirectlogin.html');
+    header('Location:redirectlogin.php');
 }else{
     $login = true;
     $username = getUsername();

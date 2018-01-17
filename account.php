@@ -11,7 +11,7 @@ $counter = 0;
 
 //if not logged in redirect
 if(!isset($_SESSION['user_id'])){
-    header('Location:redirectlogin.html');
+    header('Location:redirectlogin.php');
 }else{
     $login = true;
     $username = getUsername();

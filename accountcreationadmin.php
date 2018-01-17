@@ -10,7 +10,7 @@
 require_once("reference/reference.php");
 
 if(!isset($_SESSION['user_id'])){
-    header('Location:redirectlogin.html');
+    header('Location:redirectlogin.php');
 }else{
     $login = true;
     $username = getUsername();

@@ -6,7 +6,7 @@ require_once("reference/reference.php");
 //if admin: delete user in post
 //if user: delete current user
 if(!isset($_SESSION['user_id'])) {
-    header('Location:redirectlogin.html');
+    header('Location:redirectlogin.php');
 }else {
     if(isAdmin()) {
         $q = "DELETE FROM users WHERE ID = '$_POST[ID]'";
