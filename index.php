@@ -111,6 +111,7 @@ if(isset($_SESSION['user_id'])){
         <div id="vec" class="notfilled">
             <img src="images/Vecomi.jpg" id="img1">
             <img src="images/1.jpg" id="img2">
+            <img src="images/4.jpg" id="img3">
         </div>
         <section id="doelstelling" class="filled">
             <h1>Wat is onze doelstelling?</h1>

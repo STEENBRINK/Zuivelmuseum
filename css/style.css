@@ -379,6 +379,12 @@ h2 {
 
 #img2 {
     position: relative;
-    margin: 10px 10% 10px 27%;
+    margin: 10px 0 10px 9%;
+    height: 280px;
+}
+
+#img3 {
+    position: relative;
+    margin: 10px 0 10px 9%;
     height: 280px;
 }
