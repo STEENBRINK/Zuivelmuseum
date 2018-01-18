@@ -33,11 +33,10 @@ function checkUserPass(){
     $result = mysqli_query(getConnection(), $q);
     $rowcount = mysqli_num_rows($result);
     if($rowcount > 0){
-        echo "booiah";
         $resultrow = mysqli_fetch_row($result);
         var_dump($resultrow);
         $_SESSION['user_id'] = $resultrow[0];
-        header("location: index.php");
+        header("location: account.php");
     }else{
         $subErr = "One of the fields is not filled in correctly";
         return $subErr;

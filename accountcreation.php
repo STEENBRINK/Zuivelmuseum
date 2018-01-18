@@ -82,19 +82,21 @@ if ($pass1 != $pass2){
 }
 
 //checks if email is up to standards
-if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
-} else {
-    $email = test_input($_POST["email"]);
-    // check if e-mail address is well-formed
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "<br>Invalid e-mail format<br>";
-    } if(emailinuse()) {
-        $emailErr = "<br>E-mail allready in use<br>";
-    }else {
-        //email correcly entered
-        $booleanEmail = true;
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["email"])) {
+        $emailErr = "Email is required";
+    } else {
+        $email = test_input($_POST["email"]);
+        // check if e-mail address is well-formed
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "<br>Invalid e-mail format<br>";
+        } if(emailinuse()) {
+            $emailErr = "<br>E-mail allready in use<br>";
+        }else {
+            //email correcly entered
+            $booleanEmail = true;
+        }
+}
 }
 //check if data in form is correctly entered
 if ($booleanName && $booleanPass1 && $booleanPass2 && $booleanEmail && $match) {
@@ -129,7 +131,7 @@ function addNewUser()
         <script type="text/javascript">
             <!--
             setTimeout(function () {
-                window.location = "index.php"
+                window.location = "login.php"
             }, 5000);
             //-->
         </script>

@@ -72,11 +72,10 @@ if(isset($_SESSION['user_id'])){
                     <td>Zaterdag</td>
                     <td>09:00 - 17:00</td>
                 </tr>
-                <p>Log in om te reserveren!</p>
+                <p>Log in om ons museum te bezoeken!</p>
             </table>
         </section>
         <section id="wiezijnwij" class="filled">
-            <br><br>
             <h1>Wie zijn wij?</h1>
             <p>
                 De aanzet tot het ontstaan van "De Melkmaten" is geweest de samenvoeging van een tweetal privé-verzamelingen,<br>
@@ -109,11 +108,11 @@ if(isset($_SESSION['user_id'])){
                 en van allerlei melkventerskarren zoals die vele jaren het straatbeeld van ons land hebben bepaald.
             </p>
         </section>
-        <div id="vec">
+        <div id="vec" class="notfilled">
             <img src="images/Vecomi.jpg" id="img1">
             <img src="images/1.jpg" id="img2">
         </div>
-        <section id="doelstelling" class="notfilled">
+        <section id="doelstelling" class="filled">
             <h1>Wat is onze doelstelling?</h1>
             <p>
                 <i>"Het in stand houden van de rijke Nederlandse zuivelhistorie, met daaraan gekoppeld een royale aandacht voor de ouderwetse melkboer en melkhandel."</i><br>
@@ -140,7 +139,7 @@ if(isset($_SESSION['user_id'])){
                 De oud-melkboeren worden meestal benaderd vanuit oude ledenlijsten van bijvoorbeeld saneringsbureaus, verenigingen of organisaties.<br>
             </p>
         </section>
-        <section id="contact" class="filled" style="height: 120px;">
+        <section id="contact" class="notfilled" style="height: 120px;">
             <div class="footer" style="text-align: left">
                 Stichting Melkboeren- en Zuivelmuseum<br>
                 'DE MELKMATEN'<br>
