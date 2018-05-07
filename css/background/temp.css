@@ -1,0 +1,26 @@
+
+#wrapper {
+    width: 90%;
+    margin: 0 5%;
+    background: red;
+    border: 1px solid red;
+}
+
+@media screen and (max-width: 480px) {
+    #wrapper {
+        width: 480px;
+        margin: 0;
+        background: gold;
+        border: 1px solid gold;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #wrapper {
+        width: 320px;
+        margin: 0;
+        background: green;
+        border: 1px solid green;
+    }
+}
+
