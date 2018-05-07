@@ -72,7 +72,6 @@ if(isset($_SESSION['user_id'])){
                     <td>Zaterdag</td>
                     <td>09:00 - 17:00</td>
                 </tr>
-                <p>Log in om ons museum te bezoeken!</p>
             </table>
         </section>
         <section id="wiezijnwij" class="filled">
