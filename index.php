@@ -46,7 +46,7 @@ if(isset($_SESSION['user_id'])){
                 <a href="https://www.facebook.com/zuivelmuseum/?fref=ts"><img src="facebook%20icon.png"></a>
                 <a href="mailto:info@zuivelmuseum.nl"><img src="mail.png"></a>
             </div>
-            <img src="images/Logo.jpg" class="logo">
+            <img src="images/Logo.jpg" class="logo" id="afbeelding">
             <table class="openingstijden">
                 <tr>
                     <td>Maandag</td>
@@ -139,31 +139,49 @@ if(isset($_SESSION['user_id'])){
                 De oud-melkboeren worden meestal benaderd vanuit oude ledenlijsten van bijvoorbeeld saneringsbureaus, verenigingen of organisaties.<br>
             </p>
         </section>
-        <section id="contact" class="notfilled" style="height: 120px;">
+        <section id="contact" class="notfilled">
             <div class="footer" style="text-align: left">
+                <p>
                 Stichting Melkboeren- en Zuivelmuseum<br>
                 'DE MELKMATEN'<br>
 
                 POSTBANK NR.          <br>
                 NL38 INGB 0006 1870 63<br>
                 K.V.K. NR. 0911.87.68
+                </p>
             </div>
             <div class="footer"style="text-align: center">
+                <p>
                 Voorzitter:<br>
                 Peter van Moerkerk<br>
                 Dorpsstraat 29<br>
                 6678 BE Oosterhout<br>
                 tel. 0481-482087<br>
+                </p>
+                <p id="emailbig">
                 peter@moerkerk.nl<br>
+                </p>
+                <p id="emailsmall">
+                    peter@<br>
+                    moerkerk.nl<br>
             </div>
             <div class="footer"style="text-align: right">
-                Secretaris/Penningmeester:<br>
+                <p>
+                Secretaris<br>
+                & Penningmeester:<br>
                 Jaco Heeren<br>
                 Polweg 3a<br>
                 7875 CG Exloo<br>
                 tel. 0591-549252<br>
                 mob. 06-51 666 228<br>
+                </p>
+                <p id="emailbig">
                 jacoheeren@ziggo.nl<br>
+                </p>
+                <p id="emailsmall">
+                    jacoheeren@<br>
+                    ziggo.nl<br>
+                </p>
             </div>
         </section>
     </div>
