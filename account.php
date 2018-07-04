@@ -1,7 +1,9 @@
 <?php
-
 //connect
 require_once("reference/reference.php");
+require 'reference/Carbon.php';
+
+use Carbon\Carbon;
 
 //set vars
 $admin = $login = $canPass = $dateCheck = $timeCheck = false;
@@ -288,6 +290,7 @@ function reservationTable($check){
         </nav>
         <div id="account">
         <h1>Reserveren</h1>
+            <p>Het is nu: <?php print(Carbon::now()->toDateTimeString())?></p>
                 <form method="post" action="">
                     <span class="error"> <?php echo  $resErr;?></span>
             <input name="date" id="datepicker">
