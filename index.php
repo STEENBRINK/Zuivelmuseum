@@ -75,6 +75,7 @@ if(isset($_SESSION['user_id'])){
             </table>
         </section>
         <section id="wiezijnwij" class="filled">
+            <h1 class="red">Log in om te reserveren!</h1>
             <h1>Wie zijn wij?</h1>
             <p>
                 De aanzet tot het ontstaan van "De Melkmaten" is geweest de samenvoeging van een tweetal privé-verzamelingen,<br>
